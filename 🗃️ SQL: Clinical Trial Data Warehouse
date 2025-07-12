@@ -1,0 +1,17 @@
+Tech Stack: Oracle SQL, GxP Compliance
+Business Impact:
+
+Optimized complex queries improved report generation speed by 30%
+
+Ensured FDA 21 CFR Part 11 compliance for audit readiness
+
+Collaborated with data engineers to resolve ETL bottlenecks
+
+-- Patient Enrollment Tracking
+SELECT 
+    p.Patient_ID,
+    s.Site_Name,
+    m.Monitoring_Status
+FROM PATIENT_ENROLLMENT p
+JOIN SITE_MONITORING s ON p.Site_ID = s.Site_ID
+WHERE m.Monitoring_Status = 'Completed';
