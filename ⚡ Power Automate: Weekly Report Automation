@@ -1,0 +1,44 @@
+# ⚡ Power Automate: Weekly Report Automation  
+**Tech Stack**: Power Automate, SharePoint, Office Scripts  
+
+## 📌 Business Impact  
+- Automated **weekly financial report generation**, reducing manual work by **85%**  
+- Integrated **5+ data sources** (SharePoint, Excel, Outlook)  
+- Ensured **GxP compliance** through audit logging  
+
+## 🛠️ Workflow Overview  
+```mermaid
+graph TD
+    A[Trigger: Weekly Schedule] --> B[Retrieve Files from SharePoint]
+    B --> C[Apply Data Cleaning]
+    C --> D[Run Office Scripts]
+    D --> E[Filter & Transform Data]
+    E --> F[Generate PDF Report]
+    F --> G[Email to Stakeholders]
+
+🔍 Key Components
+1. File Retrieval
+Source: SharePoint document library
+
+File types: .xlsx, .csv
+
+Error handling for missing files
+
+2. Data Transformation
+// Sample filter action
+"apply_to_each": {
+    "value": "@body('Get_files')",
+    "actions": {
+        "Filter_array": {
+            "inputs": {
+                "from": "@items('Apply_to_each')",
+                "where": "@greater(item()?['size'], 0)"
+            }
+        }
+    }
+}
+
+3. Output Generation
+PDF reports via Adobe PDF Services
+
+Email distribution to 20+ department heads
