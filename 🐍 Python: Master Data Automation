@@ -1,0 +1,15 @@
+ 🐍 Python: Master Data Automation
+Tech Stack: Python (Pandas), Excel VBA
+Business Impact:
+
+Automated monthly doctor/hospital data syncs, saving 15+ hours/month
+
+Eliminated manual errors in MI system updates
+
+Later integrated with Power Automate for scheduled runs
+
+# Data Cleaning for Master Records
+import pandas as pd
+df = pd.read_excel("doctor_records.xlsx")
+df['Hospital_Name'] = df['Hospital_Name'].str.strip().str.title()
+df.to_csv("miq_export.txt", sep='\t', index=False)
