@@ -1,0 +1,35 @@
+# ⚙️ PowerShell: File System Automation  
+**Tech Stack**: PowerShell 7.x, Filesystem Management  
+
+## 📌 Business Impact  
+- Automated **log file maintenance** for 50+ servers  
+- Prevented **duplicate entries** in system reports  
+- Saved **10+ hours/month** of manual cleanup  
+
+## 🛠️ Script Overview  
+```mermaid
+graph TD
+    A[Input: Target Folder] --> B[Filter & Rename Files]
+    B --> C[Delete Obsolete Files]
+    C --> D[Append Timestamped Logs]
+    D --> E[Clean Blank Lines]
+
+🔍 Key Functions
+1. File Filtering & Renaming
+powershell
+# Sample: Filter files by prefix and rename
+Get-ChildItem -Path $targetFolder -Filter "VGITF*" | 
+Rename-Item -NewName { $_.Name -replace "^VGITFINELERT", "ARCHIVED_" }
+
+2. Duplicate Entry Prevention
+powershell
+# Check for existing today's entry
+$todayEntry = Get-Content $logFile | 
+              Where-Object { $_ -match (Get-Date -Format "yyyyMMdd") }
+if ($todayEntry) { Write-Warning "Entry exists!" }
+
+
+3. Log File Maintenance
+powershell
+# Append new entry with timestamp
+Add-Content -Path $logFile -Value "[$(Get-Date)] - System check completed"
